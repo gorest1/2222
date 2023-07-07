@@ -108,6 +108,34 @@ void accessData(Cache* cache, int key) {
     }
 }
 
+
+// Дополнительные тесты
+void runAdditionalTests() {
+    Cache* cache = createCache(3);
+
+    printf("Additional tests:\n");
+
+    // Тест 1: Проверка заполненности кэша
+    printf("Test 1: Cache full:\n");
+    accessData(cache, 1);
+    accessData(cache, 2);
+    accessData(cache, 3);
+    accessData(cache, 4);
+    printCache(cache);
+
+    // Тест 2: Доступ к существующему элементу
+    printf("Test 2: Access existing element:\n");
+    accessData(cache, 2);
+    printCache(cache);
+
+    // Тест 3: Доступ к несуществующему элементу
+    printf("Test 3: Access non-existent element:\n");
+    accessData(cache, 5);
+    printCache(cache);
+
+    destroyCache(cache);
+}
+
 int main() {
     int i;
     Cache* cache = createCache(3); // Создаем кэш с вместимостью 3 элемента
@@ -119,6 +147,8 @@ int main() {
         accessData(cache, accessSequence[i]); // Выполняем доступ к данным
         printCache(cache); // Печатаем состояние кэша
     }
+
+
 
     destroyCache(cache); // Уничтожаем кэш
     return 0;
